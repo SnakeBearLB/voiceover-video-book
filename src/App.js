@@ -18,10 +18,20 @@ function App() {
   }, [])
 
   // SEQUENCE add audio
-    // GET audio from 
-  // add audio
-  // extend last frame of video for length of audio
-  // merge video files
+    // GET audio mp3
+    // GET video MP4
+    // COMPUTE ffmpeg to add audio and video together
+    // END sequence
+
+  // SEQUENCE extend video frame
+    // GET length of user recorded audio
+    // COMPUTE ffmpeg: extend last video frame length of audio
+  
+  // SEQUENCE add all videos together
+    // GET all videos with added audio tracks
+    // COMPUTE ffmpeg: combine all videos
+
+  // make output video downloadable
 
 
   return (
