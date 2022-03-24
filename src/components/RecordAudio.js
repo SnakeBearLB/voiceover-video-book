@@ -11,8 +11,6 @@ const RecordAudio = ({
   setFinalizeReady
 }) => {
 
-  const [isRecording, setIsRecording] = useState(false);
-  const [recorder, setRecorder] = useState(null);
   const [mediaRecorder, setMediaRecorder] = useState()
 
   const backButton = useRef()
@@ -20,9 +18,6 @@ const RecordAudio = ({
   const playButton = useRef()
   const nextButton = useRef()
   const finalizeButton = useRef()
-
-  // console.log(page)
-  let chunks = [];
   
   console.log(audioList)
 
@@ -84,19 +79,11 @@ const RecordAudio = ({
       console.log(mediaRecorder.state);
     }
     console.log(mediaRecorder.state);
-  
-    //////////////////////////////
-    //  Record/Stop/Store Data  //
-    //////////////////////////////
 
     mediaRecorder.onstop = function(e) {
       // can't have console logs in production version
       console.log("recorder stopped");
     }
-
-    ///////////////////////////////        
-    // STORING BLOBS IN CHUNKS[] //
-    ///////////////////////////////
 
     mediaRecorder.ondataavailable = function (e) {
       const blob = e.data.slice(0, e.data.size, "audio/mpeg")
