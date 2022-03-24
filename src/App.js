@@ -1,8 +1,4 @@
 
-
-
-import RecordAudio from './components/RecordAudio.js';
-import VideoProcessing from './components/VideoProcessing.js';
 import {useEffect, useState, useRef} from 'react';
 import Main from './components/Main.js'
 

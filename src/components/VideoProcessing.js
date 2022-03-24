@@ -4,9 +4,6 @@ import '../App.css';
 import {useEffect, useState, useRef} from 'react'
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
-import fullVideo from '../media/remember-the-cormorants-with-words.mp4'
-import { render } from '@testing-library/react';
-
 const ffmpeg = createFFmpeg({ log: true})
 
 const VideoProcessing = ({
@@ -34,7 +31,6 @@ const VideoProcessing = ({
   }, [])
 
   const addAudio = async () => {
-    console.log(videoTemplates)
     ffmpeg.FS("writeFile", "input.mp4", await fetchFile(videoTemplates[page]));
     ffmpeg.FS("writeFile", "audio", await fetchFile(audioList[page]));
     console.log(audioList[page])
@@ -57,7 +53,7 @@ const VideoProcessing = ({
 
     
     setTsVideosArray(currentVideoSegments => [...currentVideoSegments, tsVideosArray[page] = outputTs])
-    
+
     console.log(tsVideosArray)
   }
 
@@ -97,11 +93,11 @@ const VideoProcessing = ({
     finalizedVideoRef.current.src = URL.createObjectURL(
       new Blob([video.buffer], { type: "video/mp4" })
     );
+    anchorRef.current.hidden = false;
   }
 
   const downloadVideo = () => {
     anchorRef.current.href = finalizedVideoRef.current.src
-    anchorRef.current.hidden = false;
   }
 
   useEffect(() => {
@@ -116,12 +112,13 @@ const VideoProcessing = ({
     <div>
       <h1>Remember The Cormorants</h1>
       <br/>
-      <video ref={finalizedVideoRef} controls></video>
-      <br/>
-      {/* download button */}
       <a ref={anchorRef} onClick={downloadVideo} download="cormorants.mp4" hidden>
         <button>Download</button>
       </a>
+      <br/>
+      <video ref={finalizedVideoRef} controls></video>
+      <br/>
+      {/* download button */}
     </div>
   );
 }

@@ -1,7 +1,4 @@
 
-import VideoProcessing from "./VideoProcessing.js";
-import AudioProcessing from './AudioProcessing.js'
-import BrowserDetection from "../utils/BrowserDetection.js";
 import {useEffect, useState, useRef} from 'react'
 // import useRecorder from "./Recorder.js"
 
@@ -11,10 +8,7 @@ const RecordAudio = ({
   page, 
   setPage, 
   browser, 
-  setFinalizeReady, 
-  finalizeReady,
-  finalizedVideo,
-  setFinalizedVideo
+  setFinalizeReady
 }) => {
 
   const [isRecording, setIsRecording] = useState(false);
@@ -96,8 +90,8 @@ const RecordAudio = ({
     //////////////////////////////
 
     mediaRecorder.onstop = function(e) {
+      // can't have console logs in production version
       console.log("recorder stopped");
-      console.log(e)
     }
 
     ///////////////////////////////        
@@ -105,9 +99,6 @@ const RecordAudio = ({
     ///////////////////////////////
 
     mediaRecorder.ondataavailable = function (e) {
-      console.log(audioList)
-      console.log(page)
-      console.log(chunks)
       const blob = e.data.slice(0, e.data.size, "audio/mpeg")
       if (audioList[page] === undefined) {
         setAudioList(currentList => [...currentList, blob])
@@ -124,7 +115,6 @@ const RecordAudio = ({
     const audioURL = window.URL.createObjectURL(audioList[page])
     const audio = document.createElement('audio')
     audio.src = audioURL
-    console.log(page)
     audio.play();
   }
 
@@ -136,8 +126,6 @@ const RecordAudio = ({
       console.log(page)
     };
   }
-
-  console.log(page)
 
   const finalize = () => {
     setFinalizeReady(true)

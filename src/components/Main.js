@@ -2,9 +2,7 @@
 import {useRef, useState, useEffect} from "react"
 import VideoProcessing from './VideoProcessing.js'
 import RecordAudio from "./RecordAudio.js"
-import AudioProcessing from "./AudioProcessing.js"
 import BrowserDetection from "../utils/BrowserDetection.js"
-
 
 import video0 from '../media/remember-the-cormorants-with-words-0.mp4'
 import video1 from '../media/remember-the-cormorants-with-words-1.mp4'
@@ -15,21 +13,16 @@ import video5 from '../media/remember-the-cormorants-with-words-5.mp4'
 import video6 from '../media/remember-the-cormorants-with-words-6.mp4'
 import video7 from '../media/remember-the-cormorants-with-words-7.mp4'
 
-
-
 const Main = () => {
 
   const [browser, setBrowser] = useState();
   const [page, setPage] = useState(0);
   const [audioList, setAudioList] = useState([])
-  const [audioURL, setAudioURL] = useState("");
   const [videoSegments, setVideoSegments] = useState([])
 
   const [finalizedVideo, setFinalizedVideo] = useState()
   const [finalizeReady, setFinalizeReady] = useState(false)
   const [finalVideo, setFinalVideo] = useState()
-
-  
 
   const videoImports = [video0, video1, video2, video3, video4, video5, video6, video7]
 
@@ -63,18 +56,6 @@ const Main = () => {
         setVideoTemplates={setVideoTemplates}
         finalVideo={finalVideo}
         setFinalVideo={setFinalVideo}       
-      />
-      <AudioProcessing 
-        audioList={audioList}
-        setAudioList={setAudioList}
-        page={page}
-        setPage={setPage}
-        videoSegments={videoSegments}
-        setVideoSegments={setVideoSegments}
-        setVideoTemplates={setVideoTemplates}
-        videoTemplates={videoTemplates}
-        finalVideo={finalVideo}
-        setFinalVideo={setFinalVideo}
       />
     </div>
   )
