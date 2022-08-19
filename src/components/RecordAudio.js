@@ -1,5 +1,5 @@
-
-import {useEffect, useState, useRef} from 'react'
+import '../App.css';
+import React, {useRef, useState, useEffect} from "react"
 // import useRecorder from "./Recorder.js"
 
 const RecordAudio = ({
@@ -8,11 +8,14 @@ const RecordAudio = ({
   page, 
   setPage, 
   browser, 
-  setFinalizeReady
+  setFinalizeReady,
+  videoTemplates
 }) => {
 
   const [mediaRecorder, setMediaRecorder] = useState()
 
+  const readAlongRef = useRef()
+  const readyButtonRef = useRef()
   const backButton = useRef()
   const recordButton = useRef()
   const playButton = useRef()
@@ -21,7 +24,18 @@ const RecordAudio = ({
   
   console.log(audioList)
 
+
+
+  const handleReadAlong = () => {
+    console.log(videoTemplates[page])
+    readAlongRef.current.src = videoTemplates[page]
+    readAlongRef.current.play()
+  }
+
   const handleStart = () => {
+    readyButtonRef.current.hidden = false
+    readAlongRef.current.hidden = false
+    readAlongRef.current.src = videoTemplates[page]
     if (navigator.mediaDevices.getUserMedia) {
       backButton.current.hidden = false
       recordButton.current.hidden = false
@@ -128,7 +142,11 @@ const RecordAudio = ({
 
   return (
     <div>
+      <h1>Remember The Cormorants</h1>
+      <video className="read-along-video" ref={readAlongRef}></video>
+      <br/>
       <button onClick={handleStart}>START</button>
+      <button ref={readyButtonRef} onClick={handleReadAlong} hidden>Ready!</button>
       <button ref={backButton} onClick={handleBack}>Back</button>
       <button ref={recordButton} onClick={handleRecord} >Record</button>
       <button ref={playButton} onClick={handlePlay}>Play</button>

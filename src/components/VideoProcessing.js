@@ -1,7 +1,8 @@
 
 
+
 import '../App.css';
-import {useEffect, useState, useRef} from 'react'
+import React, {useRef, useState, useEffect} from "react"
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
 const ffmpeg = createFFmpeg({ log: true})
@@ -47,7 +48,7 @@ const VideoProcessing = ({
 
     const outputTs = ffmpeg.FS("readFile", "output.ts")
     
-    setVideoSegments(currentVideoSegments => [...currentVideoSegments, videoSegments[page] = output])
+    // setVideoSegments(currentVideoSegments => [...currentVideoSegments, videoSegments[page] = output])
     
     tsVideosArray[page] = outputTs
 
@@ -94,6 +95,7 @@ const VideoProcessing = ({
       new Blob([video.buffer], { type: "video/mp4" })
     );
     anchorRef.current.hidden = false;
+    finalizedVideoRef.current.hidden = false;
   }
 
   const downloadVideo = () => {
@@ -101,22 +103,25 @@ const VideoProcessing = ({
   }
 
   useEffect(() => {
-    addAudio();
+    if (ready) {
+      addAudio();
+    }
   }, [audioList])
 
   useEffect(() => {
-    finalize();
+    if (ready) {
+      finalize();
+    }
   }, [finalizeReady])
 
   return (
     <div>
-      <h1>Remember The Cormorants</h1>
       <br/>
       <a ref={anchorRef} onClick={downloadVideo} download="cormorants.mp4" hidden>
         <button>Download</button>
       </a>
       <br/>
-      <video ref={finalizedVideoRef} controls></video>
+      <video className="final-video" ref={finalizedVideoRef} controls hidden></video>
       <br/>
       {/* download button */}
     </div>

@@ -1,5 +1,5 @@
 
-import {useRef, useState, useEffect} from "react"
+import React, {useRef, useState, useEffect} from "react"
 import VideoProcessing from './VideoProcessing.js'
 import RecordAudio from "./RecordAudio.js"
 import BrowserDetection from "../utils/BrowserDetection.js"
@@ -42,6 +42,7 @@ const Main = () => {
         finalizeReady={finalizeReady}
         finalizedVideo={finalizedVideo}
         setFinalizedVideo={setFinalizedVideo}
+        videoTemplates={videoTemplates}
       />
       <VideoProcessing 
         audioList={audioList}
