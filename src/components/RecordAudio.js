@@ -120,7 +120,7 @@ const RecordAudio = ({
   }
 
   const handleNext = () => {
-    if (page === 12) {
+    if (page === 3) {
       return;
     } else {
       setPage(previousPage => previousPage + 1);

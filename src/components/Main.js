@@ -7,11 +7,7 @@ import BrowserDetection from "../utils/BrowserDetection.js"
 import video0 from '../media/remember-the-cormorants-with-words-0.mp4'
 import video1 from '../media/remember-the-cormorants-with-words-1.mp4'
 import video2 from '../media/remember-the-cormorants-with-words-2.mp4'
-import video3 from '../media/remember-the-cormorants-with-words-3.mp4'
-import video4 from '../media/remember-the-cormorants-with-words-4.mp4'
-import video5 from '../media/remember-the-cormorants-with-words-5.mp4'
-import video6 from '../media/remember-the-cormorants-with-words-6.mp4'
-import video7 from '../media/remember-the-cormorants-with-words-7.mp4'
+
 
 const Main = () => {
 
@@ -24,7 +20,7 @@ const Main = () => {
   const [finalizeReady, setFinalizeReady] = useState(false)
   const [finalVideo, setFinalVideo] = useState()
 
-  const videoImports = [video0, video1, video2, video3, video4, video5, video6, video7]
+  const videoImports = [video0, video1, video2]
 
   const [videoTemplates, setVideoTemplates] = useState(videoImports)
   
