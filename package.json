@@ -2,7 +2,6 @@
   "name": "voiceover-video-book",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://snakebearlb.github.io/voiceover-video-book/",
   "dependencies": {
     "@ffmpeg/core": "0.9.0",
     "@ffmpeg/ffmpeg": "0.9.8",
@@ -17,7 +16,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "CI=false react-app-rewired build",
+    "build": "CI=false react-scripts build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
