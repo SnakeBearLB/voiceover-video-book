@@ -5,7 +5,10 @@ import '../App.css';
 import React, {useRef, useState, useEffect} from "react"
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 
-const ffmpeg = createFFmpeg({ log: true})
+const ffmpeg = createFFmpeg({ 
+  corePath: 'https://unpkg.com/@ffmpeg/core@0.10.0/dist/ffmpeg-core.js',
+  log: true
+})
 
 const VideoProcessing = ({
   audioList, 
