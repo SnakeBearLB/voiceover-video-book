@@ -1,5 +1,5 @@
 {
-  "name": "react-ffmpeg-wasm",
+  "name": "voiceover-video-book",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://snakebearlb.github.io/voiceover-video-book/",
@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "react-app-rewired": "^2.2.1"
   }
 }
