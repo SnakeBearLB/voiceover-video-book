@@ -17,6 +17,8 @@ const VideoProcessing = ({
   videoSegments, 
   setVideoSegments, 
   videoTemplates,
+  processing,
+  setProcessing
 }) => {
   const anchorRef = useRef();
   const finalizedVideoRef = useRef();
@@ -35,6 +37,7 @@ const VideoProcessing = ({
   }, [])
 
   const addAudio = async () => {
+    setProcessing(true)
     ffmpeg.FS("writeFile", "input.mp4", await fetchFile(videoTemplates[page]));
     ffmpeg.FS("writeFile", "audio", await fetchFile(audioList[page]));
     console.log(audioList[page])
@@ -59,6 +62,7 @@ const VideoProcessing = ({
     setTsVideosArray(currentVideoSegments => [...currentVideoSegments, tsVideosArray[page] = outputTs])
 
     console.log(tsVideosArray)
+    setProcessing(false)
   }
 
   const mergeVideos = async (video, i) => {
@@ -80,6 +84,7 @@ const VideoProcessing = ({
   }
 
   const finalize = async() => {
+    setProcessing(true)
     let finalFuck = tsVideosArray[0]
     console.log(tsVideosArray.length -1)
     for (let i = 1; i < tsVideosArray.length - 1; i++){
@@ -90,6 +95,7 @@ const VideoProcessing = ({
     const last = await finalProcess(finalFuck)
     console.log(last)
     videoAvailable(last)
+    setProcessing(false)
   }
 
 

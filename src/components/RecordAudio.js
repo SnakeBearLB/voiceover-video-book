@@ -9,11 +9,15 @@ const RecordAudio = ({
   setPage, 
   browser, 
   setFinalizeReady,
-  videoTemplates
+  videoTemplates,
+  imageTemplates,
+  processing,
+  setProcessing,
 }) => {
 
   const [mediaRecorder, setMediaRecorder] = useState()
 
+  const startButtonRef=useRef()
   const readAlongRef = useRef()
   const readyButtonRef = useRef()
   const backButton = useRef()
@@ -21,21 +25,22 @@ const RecordAudio = ({
   const playButton = useRef()
   const nextButton = useRef()
   const finalizeButton = useRef()
-  
-  console.log(audioList)
-
-
+  const loadingDivRef = useRef()
+  const finalizeInstruct = useRef()
 
   const handleReadAlong = () => {
-    console.log(videoTemplates[page])
-    readAlongRef.current.src = videoTemplates[page]
-    readAlongRef.current.play()
+    // console.log(videoTemplates[page])
+    readAlongRef.current.src = imageTemplates[page]
+    // readAlongRef.current.play()
   }
 
   const handleStart = () => {
-    readyButtonRef.current.hidden = false
+    // readyButtonRef.current.hidden = false
+    readAlongRef.current.style.visibility = 'visible'
     readAlongRef.current.hidden = false
-    readAlongRef.current.src = videoTemplates[page]
+    readAlongRef.current.src = imageTemplates[page]
+    finalizeButton.current.hidden = 'true'
+    startButtonRef.current.hidden = 'true';
     if (navigator.mediaDevices.getUserMedia) {
       backButton.current.hidden = false
       recordButton.current.hidden = false
@@ -74,6 +79,8 @@ const RecordAudio = ({
 
   const handleBack = () => {
     if (page > 0) {
+      recordingScreen();
+      handleReadAlong();
       setPage(previousPage => previousPage - 1);
     } else {
       return;
@@ -95,8 +102,6 @@ const RecordAudio = ({
     console.log(mediaRecorder.state);
 
     mediaRecorder.onstop = function(e) {
-      // can't have console logs in production version
-      console.log("recorder stopped");
     }
 
     mediaRecorder.ondataavailable = function (e) {
@@ -119,12 +124,16 @@ const RecordAudio = ({
     audio.play();
   }
 
-  const handleNext = () => {
-    if (page === 3) {
+  console.log(page)
+
+  const handleNext = async () => {
+    if (page >= 2) {
+      finalizeScreen();
       return;
     } else {
       setPage(previousPage => previousPage + 1);
-      console.log(page)
+      recordingScreen();
+      handleReadAlong();
     };
   }
 
@@ -133,20 +142,57 @@ const RecordAudio = ({
   }
 
   useEffect(() => {
+    if (processing){
+      finalizeInstruct.current.style.visibility = 'hidden'
+      loadingDivRef.current.style.visibility = 'visible'
+      nextButton.current.disable = true
+    } else {
+      loadingDivRef.current.style.visibility = 'hidden'
+      nextButton.current.disable = false
+    }
+    readAlongRef.current.src = imageTemplates[page]
+  })
+
+  useEffect(() => {
     backButton.current.hidden = true
     recordButton.current.hidden = true
     playButton.current.hidden = true
     nextButton.current.hidden = true
+    finalizeButton.current.hidden = true
+    loadingDivRef.current.style.visibility = 'hidden'
+    readAlongRef.current.style.visibility = 'hidden'
   }, []);
+
+  const finalizeScreen = () => {
+    recordButton.current.hidden = true
+    finalizeButton.current.hidden = false
+    nextButton.current.hidden = true
+    readAlongRef.current.style.visibility = 'hidden'
+    finalizeInstruct.current.style.visibility = 'visible'
+  }
+
+  const recordingScreen = () => {
+    recordButton.current.hidden = false
+    finalizeButton.current.hidden = true
+    nextButton.current.hidden = false
+    readAlongRef.current.style.visibility = 'visible'
+    finalizeInstruct.current.style.visibility = 'hidden'
+  }
 
 
   return (
     <div>
-      <h1>Remember The Cormorants</h1>
-      <video className="read-along-video" ref={readAlongRef}></video>
+      <h1>Voiceover Video Book</h1>
+      <div className="video-div">
+        <div ref={loadingDivRef} className="loading-div">
+          <p className="loading-text">Loading...</p>
+        </div>
+        <p className="finalize-instruct" ref={finalizeInstruct}>click "finalize" below to process and download your video</p>
+        <img ref={readAlongRef} className="read-along-div"></img>
+      </div>
       <br/>
-      <button onClick={handleStart}>START</button>
-      <button ref={readyButtonRef} onClick={handleReadAlong} hidden>Ready!</button>
+      <button ref={startButtonRef} onClick={handleStart}>START</button>
+      {/* <button ref={readyButtonRef} onClick={handleReadAlong} hidden>Ready!</button> */}
       <button ref={backButton} onClick={handleBack}>Back</button>
       <button ref={recordButton} onClick={handleRecord} >Record</button>
       <button ref={playButton} onClick={handlePlay}>Play</button>
