@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 1080 1080">
+<metadata>
+<vectornator:setting key="Units" value="Pixels"/>
+<vectornator:setting key="SnapToGrid" value="0"/>
+<vectornator:setting key="OutlineMode" value="0"/>
+<vectornator:setting key="SnapToEdges" value="0"/>
+<vectornator:setting key="PencilOnly" value="0"/>
+<vectornator:setting key="GuidesVisible" value="1"/>
+<vectornator:setting key="DynamicGuides" value="0"/>
+<vectornator:setting key="IsolateActiveLayer" value="0"/>
+<vectornator:setting key="DisplayWhiteBackground" value="0"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="DimensionsVisible" value="1"/>
+<vectornator:setting key="doHistoryDisabled" value="0"/>
+<vectornator:setting key="SnapToPoints" value="0"/>
+<vectornator:setting key="SnapToGuides" value="1"/>
+<vectornator:setting key="TimeLapseWatermarkDisabled" value="0"/>
+<vectornator:setting key="CMYKEnabledKey" value="0"/>
+</metadata>
+<defs>
+<linearGradient y1="383.558" id="LinearGradient" x1="379.646" y2="381.585" x2="622.732" gradientUnits="userSpaceOnUse" gradientTransform="matrix(2.86277 3.1828 -3.1828 2.86277 318.937 -2160.75)">
+<stop stop-color="#f0c2a2" offset="0.282382"/>
+<stop stop-color="#62e1da" offset="0.529079"/>
+<stop stop-color="#e16262" offset="0.807473"/>
+</linearGradient>
+</defs>
+<g id="Layer 1" vectornator:layerName="Layer 1">
+<path stroke="#ffffff" stroke-width="11" d="M184.989+145.63C402.664-50.1571+737.841-32.4141+933.628+185.26C1129.42+402.935+1111.67+738.112+893.998+933.899C676.324+1129.69+341.147+1111.94+145.359+894.27C-50.428+676.595-32.6852+341.418+184.989+145.63Z" fill="url(#LinearGradient)" stroke-linecap="round" opacity="1" stroke-linejoin="round"/>
+</g>
+</svg>
