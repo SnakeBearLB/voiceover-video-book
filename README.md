@@ -2,7 +2,7 @@
 
 ## How it works
 
-> This app is meant to show the capability of editing video client side by utilizing ffmpeg/wasm. 
+> This is a demonstration to show the capability of editing video client side.
 
 - user is prompted with 3 pages of a childrens book
 - for each page, the user records the audio of them reading the pages out loud.
@@ -13,6 +13,12 @@
   - the video will pause on the page
   - then the user recorded audio will play for that page
   - when the audio has commenced finished, the next clip will play, transitioning to the next page, then next user audio for that page.
+#
+## Link
 
+>click [here](https://sad-kirch-12188b.netlify.app/) to see a live version of the web app
 
- 
+#
+## Credit
+
+>Videos by [Andrew James Ferris](https://www.accidentalmystic.space/)
