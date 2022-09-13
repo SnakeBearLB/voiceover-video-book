@@ -183,6 +183,18 @@ const RecordAudio = ({
   return (
     <div>
       <h1>Voiceover Video Book</h1>
+      <div className="instruction-div">
+        <ol>
+          <li>click start to begin the process</li>
+          <li>click "record" and read the words on the page</li>
+          <li>click "record" again to stop recording</li>
+          <li>click "next" to go to next page</li>
+          <li>when instucted click "finalize"</li>
+        </ol>
+        <br/>
+        
+        <p className="explanation" style={{}}>the end result will be a 3 page downloadable video book with your voice as the narrator</p>
+      </div>
       <div className="video-div">
         <div ref={loadingDivRef} className="loading-div">
           <p className="loading-text">Loading...</p>
@@ -192,7 +204,6 @@ const RecordAudio = ({
       </div>
       <br/>
       <button ref={startButtonRef} onClick={handleStart}>START</button>
-      {/* <button ref={readyButtonRef} onClick={handleReadAlong} hidden>Ready!</button> */}
       <button ref={backButton} onClick={handleBack}>Back</button>
       <button ref={recordButton} onClick={handleRecord} >Record</button>
       <button ref={playButton} onClick={handlePlay}>Play</button>
